@@ -1,0 +1,20 @@
+@import-normalize;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.swiper-pagination-bullet {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+  color: #000;
+  opacity: 1;
+  background: transparent;
+}
+
+.swiper-pagination-bullet-active {
+  color: #fff;
+  /* background: #007aff; */
+}
