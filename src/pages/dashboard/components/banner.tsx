@@ -24,8 +24,9 @@ function Banner() {
         modules={[Pagination]}
         className="h-[100%] w-full"
       >
-        {feautured.slice(4, 10).map((movie: any, key: number) => (
+        {feautured.slice(4, 10).map((movie: any, _key: number) => (
           <Hero
+            key={_key}
             style={{
               backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.poster_path})`,
               backgroundRepeat: 'no-repeat',
