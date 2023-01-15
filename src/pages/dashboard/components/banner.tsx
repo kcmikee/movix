@@ -4,16 +4,18 @@ import 'swiper/css/pagination'
 
 import { Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import fetchedImgSrc from '../../../assets/images/dashboard/Poster.png'
 import imdb from '../../../assets/images/dashboard/IMDB.png'
 import rotten from '../../../assets/images/dashboard/rotten.png'
 import { PlayCircle } from '@styled-icons/material/PlayCircle'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
 
 function Banner() {
+  const { feautured } = useSelector((state: any) => state.movie)
   const pagination = {
     clickable: true
   }
+
   return (
     <div className="h-[73%] bg-black">
       <Swiper
@@ -22,55 +24,56 @@ function Banner() {
         modules={[Pagination]}
         className="h-[100%] w-full"
       >
-        <SwiperSlide
-          style={{
-            backgroundImage: `url(${fetchedImgSrc})`,
-            backgroundRepeat: 'no-repeat',
-            position: 'relative',
-            padding: '0 6%'
-          }}
-        >
-          <div className="absolute top-[30%] w-[404px]">
-            <h1 className="text-white font-bold text-5xl leading-tight">
-              John Wick 3 : Parabellum
-            </h1>
-            <div className="my-5 flex items-center gap-3">
-              <div className="flex items-center gap-3">
-                <img src={imdb} className="w-[35px]" alt="imdb" />{' '}
-                <p className="text-white">8.6/10</p>
+        {feautured.slice(4, 10).map((movie: any, key: number) => (
+          <Hero
+            style={{
+              backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.poster_path})`,
+              backgroundRepeat: 'no-repeat',
+              position: 'relative'
+            }}
+          >
+            <div className="absolute top-[30%] w-[404px]">
+              <h1 className="text-white font-bold text-5xl leading-tight">
+                {movie.name}
+              </h1>
+              <div className="my-5 flex items-center gap-3">
+                <div className="flex items-center gap-3">
+                  <img src={imdb} className="w-[35px]" alt="imdb" />{' '}
+                  <p className="text-white">{movie.vote_average}</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <img src={rotten} className="w-4" alt="imdb" />{' '}
+                  <p className="text-white">97%</p>
+                </div>
               </div>
-              <div className="flex items-center gap-3">
-                <img src={rotten} className="w-4" alt="imdb" />{' '}
-                <p className="text-white">97%</p>
+              <div>
+                <p className="text-white">{movie.overview}</p>
               </div>
+              <Watch className="hover:bg-rose-500 cursor-pointer">
+                <PlayCircle size={25} color="#fff" />
+                <p className="font-bold text-white text-sm">Watch trailer</p>
+              </Watch>
             </div>
-            <div>
-              <p className="text-white">
-                John Wick is on the run after killing a member of the
-                international assassins' guild, and with a $14 million price tag
-                on his head, he is the target of hit men and women everywhere.
-              </p>
-            </div>
-            <Watch className="hover:bg-rose-500 cursor-pointer">
-              <PlayCircle size={25} color="#fff" />
-              <p className="font-bold text-white text-sm">Watch trailer</p>
-            </Watch>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+          </Hero>
+        ))}
       </Swiper>
     </div>
   )
 }
 
 export default Banner
+
+const Hero = styled(SwiperSlide)`
+  background-size: 100%;
+  background-position-x: center;
+  background-position-y: -38rem;
+  background-repeat: no-repeat;
+  padding: 0 6%;
+  @media only screen and (max-width: 768px) {
+    background-position-x: left;
+    background-position-y: 1rem;
+  }
+`
 
 const Watch = styled.div`
   display: flex;
