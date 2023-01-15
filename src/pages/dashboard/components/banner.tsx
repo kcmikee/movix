@@ -15,7 +15,7 @@ function Banner() {
     clickable: true
   }
   return (
-    <div className="h-[74%] bg-black">
+    <div className="h-[73%] bg-black">
       <Swiper
         direction={'vertical'}
         pagination={pagination}
