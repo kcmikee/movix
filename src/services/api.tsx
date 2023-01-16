@@ -30,8 +30,7 @@ export const apiSlice = createApi({
       localStorage.clear()
     }
     if (result?.error) {
-      const { errorMessage, id } = parseError(result)
-      console.log({ errorMessage, id })
+      const { errorMessage, id }: any = parseError(result)
       toast.error(errorMessage, {
         toastId: id
       })

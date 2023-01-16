@@ -55,7 +55,7 @@ function SignUp() {
   })
   useEffect(() => {
     if (isSuccess) {
-      // navigate('/home')
+      navigate('/home')
     }
   }, [isSuccess])
 

@@ -30,8 +30,8 @@ export const authenticationApi = createApi({
       localStorage.clear()
     }
     if (result?.error) {
-      const { errorMessage, id } = parseError(result)
-      console.log({ errorMessage, id })
+      const { errorMessage, id }: any = parseError(result)
+      // console.log({ errorMessage, id })
       toast.error(errorMessage, {
         toastId: id
       })
