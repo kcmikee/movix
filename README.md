@@ -1,10 +1,10 @@
 # vite React TypeScript tailwindcss starter
 
-Template for vite, React + tailwindcss + TypeScript projects with some tools preconfigured.
+Movix
 
 ## About
 
-Template for vite, React + tailwindcss + TypeScript projects with some tools preconfigured.
+Movix project
 
 ![Screenshot](assets/screenshot.png)
 
