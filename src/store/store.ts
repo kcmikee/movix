@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit'
 // import { authApi } from './auth/Auth'
 // import authSlice from './auth/authSlice'
 import { setupListeners } from '@reduxjs/toolkit/dist/query'
-import { authApi } from './auth/authApi'
+import { authApi } from './auth/authenticationApi'
 import authSlice from './auth/authSlice'
 import movieSlice from './movies/movieSlice'
 

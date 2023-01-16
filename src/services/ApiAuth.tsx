@@ -4,12 +4,12 @@
 // import { FetchArgs, BaseQueryApi } from "@reduxjs/toolkit/dist/query";
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { toast } from 'react-toastify'
-import { BaseUrl } from '../../env'
+import { AuthBaseUrl } from '../../env'
 import { userLoggedOut } from '../store/auth/authSlice'
 import parseError from '../utils/ParseError'
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: BaseUrl,
+  baseUrl: AuthBaseUrl,
   prepareHeaders: async (headers, { getState }) => {
     const token = (getState() as any)?.auth?.accessToken
     if (token) {
@@ -20,8 +20,8 @@ const baseQuery = fetchBaseQuery({
   }
 })
 
-export const apiSlice = createApi({
-  reducerPath: 'api',
+export const authenticationApi = createApi({
+  reducerPath: 'authapi',
   baseQuery: async (args, api, extraOptions) => {
     let result = await baseQuery(args, api, extraOptions)
 
@@ -38,6 +38,6 @@ export const apiSlice = createApi({
     }
     return result
   },
-  tagTypes: [],
+  tagTypes: ['auth'],
   endpoints: (builder) => ({})
 })

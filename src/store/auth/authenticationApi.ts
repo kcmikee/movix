@@ -1,31 +1,27 @@
 /* eslint-disable no-undef */
-import { apiSlice } from '../../services/api'
+import { authenticationApi } from '../../services/ApiAuth'
 import { userSignUp, userLoggedIn } from './authSlice'
 
-export const authApi = apiSlice.injectEndpoints({
+export const authApi = authenticationApi.injectEndpoints({
   endpoints: (builder) => ({
-    finalize: builder.mutation({
+    signup: builder.mutation({
       query: (data) => ({
-        url: 'auth/finalize',
+        url: '/api/v1/Users',
         method: 'POST',
         body: data
       }),
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
           const result = await queryFulfilled
-
           localStorage.setItem(
             'auth',
             JSON.stringify({
-              accessToken: result.data.auth_user_token,
-              user: result.data.user
+              user: result.data.userName
             })
           )
-
           dispatch(
             userSignUp({
-              accessToken: result.data.auth_user_token,
-              user: result.data.user
+              user: result.data.userName
             })
           )
         } catch (err) {
@@ -33,9 +29,9 @@ export const authApi = apiSlice.injectEndpoints({
         }
       }
     }),
-    initialize: builder.mutation({
+    login: builder.mutation({
       query: (data) => ({
-        url: 'auth/initialize',
+        url: '/api/v1/Users',
         method: 'POST',
         body: data
       }),
@@ -43,17 +39,16 @@ export const authApi = apiSlice.injectEndpoints({
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
           const result = await queryFulfilled
-          // console.log({ result });
-          // localStorage.setItem(
-          //   "auth",
-          //   JSON.stringify({
-          //     accessToken: result.data.initialize_token,
-          //   })
-          // );
+          // console.log({ result })
+          localStorage.setItem(
+            'auth',
+            JSON.stringify({
+              user: result.data.userName
+            })
+          )
           dispatch(
             userLoggedIn({
-              accessToken: result.data.data.initialize_token,
-              user: undefined
+              user: result.data.userName
             })
           )
         } catch (err) {
@@ -65,4 +60,4 @@ export const authApi = apiSlice.injectEndpoints({
   })
 })
 
-export const { useInitializeMutation, useFinalizeMutation } = authApi
+export const { useSignupMutation, useLoginMutation } = authApi

@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
 import Loader from './loader'
-
+import { EyeOff } from '@styled-icons/ionicons-outline/EyeOff'
+import { Eye } from '@styled-icons/heroicons-solid/Eye'
 export const Colors = {
   black: '#000000',
   white: '#FFFFFF',
@@ -219,7 +220,9 @@ const Input = ({
   fetching,
   ...rest
 }: InputProps) => {
-  const [showPassword] = React.useState(type === 'text')
+  const [showPassword, setShowPassword] = React.useState(type === 'text')
+  const [show, setShow] = useState(false)
+
   return (
     <Style
       width={width}
@@ -255,12 +258,22 @@ const Input = ({
             <Loader size={23} color="red" />
           </FetchingLoader>
         )}
-        {/* {passwordToggle && (
-            <PasswordToggle
-              initialValue={showPassword}
-              onChange={(v) => setShowPassword(v)}
-            />
-          )} */}
+        {passwordToggle && (
+          <PasswordToggleBlock
+            onClick={() => {
+              setShow(!show)
+              show
+                ? setShowPassword(type === 'text')
+                : setShowPassword(type === 'password')
+            }}
+          >
+            {show ? (
+              <Eye size={23} color="#000" />
+            ) : (
+              <EyeOff size={23} color="#000" />
+            )}
+          </PasswordToggleBlock>
+        )}
       </label>
       {!!fieldDescription && (
         <span
@@ -288,3 +301,21 @@ Input.defaultProps = {
 }
 
 export default Input
+
+const PasswordToggleBlock = styled.span<any>`
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  margin-left: -35px;
+  opacity: 0.6;
+  transition: 0.5s ease all;
+  -webkit-transition: 0.5s ease all;
+  -moz-transition: 0.5s ease all;
+  ${(props: any) =>
+    props.show &&
+    css`
+      opacity: 1;
+    `}
+`

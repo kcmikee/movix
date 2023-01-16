@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   feautured: [] || undefined,
-  newArrival: [] || undefined
+  newArrival: [] || undefined,
+  people: [] || undefined
 }
 
 const authSlice = createSlice({
@@ -17,9 +18,12 @@ const authSlice = createSlice({
         ...state,
         feautured: action.payload.feautured
       }
+    },
+    getPeople: (state, action) => {
+      return { ...state, people: action.payload.people }
     }
   }
 })
 
-export const { getFeatured, getNewArrival } = authSlice.actions
+export const { getFeatured, getNewArrival, getPeople } = authSlice.actions
 export default authSlice.reducer

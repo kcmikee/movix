@@ -31,15 +31,29 @@ function Nav() {
           <img src={Tv} alt="logo" className="h-[50px] w-[50px]" />
           <h2 className="font-bold text-2xl">Movix</h2>
         </div>
-        <div>
+        <div className="hidden md:inline">
           <Search
             type="search"
             width="525px"
             holder="What do you want to watch?"
           />
         </div>
-        <div className="flex items-center gap-4">
-          <p>Michael</p>
+        <div className="hidden md:inline">
+          <div className="flex items-center gap-4">
+            <p>{localStorage.getItem('movixAuth') || ''}</p>
+            <div
+              className="w-9 h-9 bg-rose-700 cursor-pointer rounded-full flex flex-col gap-[5px] justify-center items-center"
+              onClick={() => {
+                localStorage.removeItem('movixAuth')
+                window.location.reload()
+              }}
+            >
+              <div className="bg-white w-[65%] h-[3px] rounded-lg"></div>
+              <div className="bg-white w-[65%] h-[3px] rounded-lg"></div>
+            </div>
+          </div>
+        </div>
+        <div className="inline md:hidden">
           <div className="w-9 h-9 bg-rose-700 rounded-full flex flex-col gap-[5px] justify-center items-center">
             <div className="bg-white w-[65%] h-[3px] rounded-lg"></div>
             <div className="bg-white w-[65%] h-[3px] rounded-lg"></div>

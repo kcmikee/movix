@@ -17,12 +17,12 @@ function Banner() {
   }
 
   return (
-    <div className="h-[73%] bg-black">
+    <div className="h-[71%] md:h-[73%] bg-black">
       <Swiper
         direction={'vertical'}
         pagination={pagination}
         modules={[Pagination]}
-        className="h-[100%] w-full"
+        className="h-[100%] w-full -mt-4 md:-mt-0"
       >
         {feautured.slice(4, 10).map((movie: any, _key: number) => (
           <Hero

@@ -34,8 +34,8 @@ function Sectionrow({
   //   console.log({ slides })
   return (
     <div className={`${mt ? mt : 'mt-14'} `}>
-      <div className="flex items-center justify-between">
-        <h2 className="text-4xl mb-[44px] font-medium font-[Dm Sans] ml-10">
+      <div className="flex items-center justify-between mb-[20px] md:mb-[44px]">
+        <h2 className="text-xl md:text-4xl  font-medium font-[Dm Sans] ml-10">
           {sectionTitle}
         </h2>
         <div className="flex items-center gap-1 mr-[1.2rem] cursor-pointer">
@@ -51,7 +51,7 @@ function Sectionrow({
         <Swiper
           className="flex items-center"
           ref={sliderRef}
-          slidesPerView={4}
+          slidesPerView={'auto'}
           spaceBetween={30}
           // loop={true}
           // loopFillGroupWithBlank={true}
@@ -61,13 +61,12 @@ function Sectionrow({
             <SwiperSlide
               key={key}
               style={{
-                maxWidth: '245px',
-                height: '500px',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                maxWidth: '245px'
                 // backgroundColor: 'black'
               }}
             >
-              <div className="w-[245px] h-full">
+              <div className="maxW-[245px] h-[500px]">
                 <img
                   src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
                   className="w-full h-[370px]  object-contain"
