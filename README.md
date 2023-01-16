@@ -6,7 +6,7 @@ Movix
 
 Movix project
 
-![Screenshot](assets/screenshot.png)
+![Screenshot](assets/screenshot1.png)
 
 ### Libraries
 
@@ -31,7 +31,7 @@ Movix project
 
 Create a new project from this template by clicking the "Use this template" button:
 
-![](assets/template-usage.png)
+![](assets/template-usage1.png)
 
 ```bash
 yarn
